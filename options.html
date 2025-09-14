@@ -4,7 +4,33 @@
     <meta charset="UTF-8">
     <meta name="color-scheme" content="light dark">
     <title>Vimium New Tab Options</title>
+    <link rel="stylesheet" type="text/css" href="options.css">
+    <script src="options.js" type="module"></script>
   </head>
 
-  <body></body>
+  <body>
+    <header>Vimium New Tab Options</header>
+
+    <h2>Open new tabs with</h2>
+
+    <form>
+      <div id="open-new-tabs-option">
+        <span><input
+            id="vimium-new-tab"
+            type="radio"
+            name="destinationType"
+            value="vimiumNewTab"
+            checked="checked"
+          /></span>
+        <label for="vimium-new-tab">
+          Vimium's blank new tab page<br>
+        </label>
+        <span><input id="custom" type="radio" name="destinationType" value="custom" /></span>
+        <div>
+          <label for="custom">Custom URL</label><br>
+          <input type="text" name="customUrl" disabled />
+        </div>
+      </div>
+    </form>
+  </body>
 </html>

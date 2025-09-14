@@ -1,0 +1,33 @@
+body {
+  max-width: 1050px;
+  margin: 0 25px;
+  font-size: 16px;
+  line-height: 100%;
+}
+
+header {
+  font-size: 18px;
+  font-weight: normal;
+  border-bottom: 1px solid #ccc;
+  padding: 20px 0 15px 0;
+  width: 100%;
+}
+
+h2 {
+  margin: 14px 0;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+#open-new-tabs-option {
+  display: grid;
+  grid-template-columns: 30px auto;
+  row-gap: 10px;
+}
+
+input[name="customUrl"] {
+  margin-top: 10px;
+  width: 400px;
+  padding: 2px 4px;
+  font-size: 16px;
+}
