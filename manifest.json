@@ -10,5 +10,5 @@
   },
   "options_page": "options.html",
   "chrome_url_overrides": { "newtab": "redirect.html" },
-  "permissions": ["tabs", "storage", "activeTab"]
+  "permissions": ["tabs", "storage"]
 }
