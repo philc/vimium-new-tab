@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Vimium New Tab Page",
-  "version": "0.1",
+  "version": "1.0",
   "description": "Show a new tab page that Vimium can control",
   "icons": {
     "16": "icons/icon16.png",
