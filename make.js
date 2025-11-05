@@ -30,6 +30,29 @@ async function parseManifestFile() {
   return JSON.parse(await Deno.readTextFile("./manifest.json"));
 }
 
+// Clones and augments the manifest.json that we use for Chrome with the keys needed for Firefox.
+function createFirefoxManifest(manifest) {
+  manifest = JSON.parse(JSON.stringify(manifest)); // Deep clone.
+
+  Object.assign(manifest, {
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "@vimium-new-tab",
+        "strict_min_version": "112.0",
+        "data_collection_permissions": {
+          "required": ["none"],
+        },
+      },
+    },
+  });
+
+  return manifest;
+}
+
+async function writeDistManifest(manifest) {
+  await Deno.writeTextFile("dist/vimium-new-tab/manifest.json", JSON.stringify(manifest, null, 2));
+}
+
 // Builds a zip file for submission to the Chrome and Firefox stores. The output is in dist/.
 async function buildStorePackage() {
   const chromeManifest = await parseManifestFile();
@@ -45,7 +68,6 @@ async function buildStorePackage() {
     "deno.lock",
   ];
 
-  // const manifest = await parseManifestFile();
   const rsyncOptions = ["-r", ".", "dist/vimium-new-tab"].concat(
     ...excludeList.map((item) => ["--exclude", item]),
   );
@@ -61,16 +83,29 @@ async function buildStorePackage() {
     "-p",
     "dist/vimium-new-tab",
     "dist/chrome-store",
+    "dist/firefox",
   ]);
   await shell("rsync", rsyncOptions);
 
+  // Build the Firefox / Mozilla Addons store package.
+  const firefoxManifest = createFirefoxManifest(chromeManifest);
+  await writeDistManifest(firefoxManifest);
   await shell("bash", [
     "-c",
-    `${zipCommand} ../chrome-store/vimium-new-tab-chrome-store-${version}.zip .`,
+    `${zipCommand} ../firefox/vimium-new-tab-firefox-${version}.zip .`,
+  ]);
+
+  // Build the Chrome Store package.
+  await writeDistManifest(chromeManifest);
+  await shell("bash", [
+    "-c",
+    `${zipCommand} ../chrome-store/vimium-chrome-store-${version}.zip .`,
   ]);
 }
 
-drake.desc("Builds a zip file for submission to the Chrome and Firefox stores. The output is in dist/");
+drake.desc(
+  "Builds a zip file for submission to the Chrome and Firefox stores. The output is in dist/",
+);
 drake.task("package", [], async () => {
   await buildStorePackage();
 });
