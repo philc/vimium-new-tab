@@ -3,8 +3,8 @@
 This is designed to be used as a companion extension to [Vimium](https://github.com/philc/vimium).
 
 This browser extension opens new tabs using Vimium's blank new tab page. As a result, the browser's
-new tab page will retain keyboard focus in Chrome-based browsers, and Vimium commands can be used
-immediately. This new tab page works offline.
+new tab page will retain keyboard focus and Vimium commands can be used immediately. This new tab
+page works offline.
 
 If desired, the URL for the new tab page can be configured in this extension's options page.
 
