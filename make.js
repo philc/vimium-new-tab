@@ -99,7 +99,7 @@ async function buildStorePackage() {
   await writeDistManifest(chromeManifest);
   await shell("bash", [
     "-c",
-    `${zipCommand} ../chrome-store/vimium-chrome-store-${version}.zip .`,
+    `${zipCommand} ../chrome-store/vimium-new-tab-chrome-store-${version}.zip .`,
   ]);
 }
 
