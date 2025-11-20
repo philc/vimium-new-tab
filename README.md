@@ -12,7 +12,8 @@ If desired, the URL for the new tab page can be configured in this extension's o
 
 - Chrome:
   [Chrome web store](https://chromewebstore.google.com/detail/vimium-new-tab-page/leohhkagdnmgbpfbnflhjmnpcjpcjmgm)
-- Edge: (coming soon)
+- Edge:
+  [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/vimium-new-tab-page/ahmddkokfhbdbmlioknpkipoikcckpah)
 - Firefox: [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/vimium-new-tab-page/)
 
 This extension registers itself as the handler for new tabs. After installing the extension, the
